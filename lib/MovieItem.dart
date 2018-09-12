@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/MovieDetail.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_movie_app/MovieResModel.dart';
 
 class MovieItem extends StatelessWidget {
-  final String name, description, image;
+  final Results movie;
 
-  MovieItem({@required this.name, this.description, this.image});
+  MovieItem({@required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +17,23 @@ class MovieItem extends StatelessWidget {
       margin: EdgeInsets.all(16.0),
       child: InkWell(
         radius: 8.0,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MovieDetail(name),
-            ),
-          );
-        },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            AspectRatio(
-              aspectRatio: 2.0,
-              child: FadeInImage.memoryNetwork(
-                fit: BoxFit.cover,
-                placeholder: kTransparentImage,
-                image: image,
+            Hero(
+              tag: movie.posterPath,
+              child: Container(
+                height: 200.0,
+                decoration: BoxDecoration(
+                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8.0)],
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                        "https://image.tmdb.org/t/p/w500/${movie.posterPath}",
+                      ),
+                      fit: BoxFit.cover),
+                ),
               ),
             ),
             Padding(
@@ -43,13 +42,13 @@ class MovieItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    name,
+                    movie.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.title,
                   ),
                   Text(
-                    description,
+                    movie.overview,
                     softWrap: true,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -60,6 +59,16 @@ class MovieItem extends StatelessWidget {
             ),
           ],
         ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MovieDetail(
+                    movie: movie,
+                  ),
+            ),
+          );
+        },
       ),
     );
   }
