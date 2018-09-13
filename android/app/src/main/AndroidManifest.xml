@@ -14,7 +14,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="flutter_movie_app"
+        android:label="Flutter Movie"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
