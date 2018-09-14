@@ -1,3 +1,6 @@
+// Created using
+// https://javiercbk.github.io/json_to_dart/
+
 class MovieResponse {
   List<Results> results;
   int page;
@@ -5,12 +8,11 @@ class MovieResponse {
   Dates dates;
   int totalPages;
 
-  MovieResponse(
-      {this.results,
-      this.page,
-      this.totalResults,
-      this.dates,
-      this.totalPages});
+  MovieResponse({this.results,
+    this.page,
+    this.totalResults,
+    this.dates,
+    this.totalPages});
 
   MovieResponse.fromJson(Map<String, dynamic> json) {
     if (json['results'] != null) {
@@ -56,21 +58,20 @@ class Results {
   String overview;
   String releaseDate;
 
-  Results(
-      {this.voteCount,
-      this.id,
-      this.video,
-      this.voteAverage,
-      this.title,
-      this.popularity,
-      this.posterPath,
-      this.originalLanguage,
-      this.originalTitle,
-      this.genreIds,
-      this.backdropPath,
-      this.adult,
-      this.overview,
-      this.releaseDate});
+  Results({this.voteCount,
+    this.id,
+    this.video,
+    this.voteAverage,
+    this.title,
+    this.popularity,
+    this.posterPath,
+    this.originalLanguage,
+    this.originalTitle,
+    this.genreIds,
+    this.backdropPath,
+    this.adult,
+    this.overview,
+    this.releaseDate});
 
   Results.fromJson(Map<String, dynamic> json) {
     voteCount = json['vote_count'];

@@ -6,7 +6,8 @@ import 'package:flutter_movie_app/MovieResModel.dart';
 import 'package:http/http.dart' as http;
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({this.title});
+
   final String title;
 
   @override
@@ -30,10 +31,12 @@ class _MyHomePageState extends State<MyHomePage> {
   fetchMovies() async {
     var response = await http.get(url);
     var decodedJson = jsonDecode(response.body);
-    movie = MovieResponse.fromJson(decodedJson);
+//    movie = MovieResponse.fromJson(decodedJson);
     print(movie);
     print(response.body);
-    setState(() {});
+    setState(() {
+      movie = MovieResponse.fromJson(decodedJson);
+    });
 //    print(2);
   }
 
@@ -50,8 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           : ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return MovieItem(
-                  movie: movie.results[index],
-                );
+                  movie: movie.results[index],);
               },
               itemCount: movie.results.length,
             ),

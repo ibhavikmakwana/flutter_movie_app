@@ -1,21 +1,31 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/MovieDetail.dart';
 import 'package:flutter_movie_app/MovieResModel.dart';
 
+/*
+Movie Item Layout for the ListView
+ */
 class MovieItem extends StatelessWidget {
   final Results movie;
 
+  /*
+   * movie object 
+   */
   MovieItem({@required this.movie});
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      // Card
       shape: RoundedRectangleBorder(
+        // shape of the card
         borderRadius: BorderRadius.circular(8.0),
       ),
       elevation: 8.0,
       margin: EdgeInsets.all(16.0),
       child: InkWell(
+        //for listening for gestures without ink splashes.
         radius: 8.0,
         child: getCardView(context),
         onTap: () {
