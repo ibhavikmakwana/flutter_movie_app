@@ -60,7 +60,6 @@ class MovieItem extends StatelessWidget {
             //container for giving border to the image
             height: 200.0,
             decoration: BoxDecoration(
-              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8.0)],
               borderRadius: BorderRadius.circular(8.0),
               image: DecorationImage(
                   image: NetworkImage(
