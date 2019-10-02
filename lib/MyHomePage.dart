@@ -5,6 +5,7 @@ import 'package:flutter_movie_app/MovieItem.dart';
 import 'package:flutter_movie_app/MovieResModel.dart';
 import 'package:http/http.dart' as http;
 
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({this.title});
 
@@ -46,17 +47,19 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: movie == null
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return MovieItem(
-                  movie: movie.results[index],);
-              },
-              itemCount: movie.results.length,
-            ),
+      body: Center(
+        child: movie ==null?CircularProgressIndicator():movie.results == null
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return MovieItem(
+                    movie: movie.results[index],);
+                },
+                itemCount: movie.results.length,
+              ),
+      ),
     );
   }
 }
